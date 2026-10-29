@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAMA AI</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #080d18;
+  color: #eaf2ff;
+}
+
+header {
+  padding: 20px;
+  background: #101a2d;
+  border-bottom: 1px solid #243552;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #1677ff;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+header h2 {
+  margin: 0;
+}
+
+header p {
+  margin: 5px 0 0;
+  color: #91a8ca;
+  font-size: 13px;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 25px 16px;
+}
+
+.hero {
+  padding: 25px 0;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero h1 span {
+  color: #4b96ff;
+}
+
+.hero p {
+  color: #a8b7ce;
+  line-height: 1.6;
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.tool {
+  background: #111d31;
+  border: 1px solid #253957;
+  border-radius: 14px;
+  padding: 17px;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tool:active {
+  background: #1b3152;
+}
+
+.tool .emoji {
+  font-size: 25px;
+}
+
+.tool h3 {
+  margin: 12px 0 7px;
+}
+
+.tool p {
+  margin: 0;
+  color: #9db0cc;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.chat {
+  background: #101a2b;
+  border: 1px solid #263a56;
+  padding: 17px;
+  border-radius: 16px;
+}
+
+.chat h3 {
+  margin-top: 0;
+}
+
+#messages {
+  min-height: 100px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.bot {
+  background: #192943;
+}
+
+.user {
+  background: #124b92;
+  margin-left: 25px;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+input {
+  min-width: 0;
+  flex: 1;
+  background: #080f1c;
+  color: white;
+  border: 1px solid #304563;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 15px;
+}
+
+button {
+  font-size: 14px;
+}
+
+.send {
+  background: #1677ff;
+  color: white;
+  border: 0;
+  padding: 0 17px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  color: #7085a4;
+  padding: 25px;
+  font-size: 12px;
+}
+
+@media (max-width: 380px) {
+  .tools {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 27px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">B</div>
+  <div>
+    <h2>BAMA AI</h2>
+    <p>Your learning companion</p>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Think smarter with <span>BAMA AI.</span></h1>
+    <p>
+      Learn new skills, explore computer science,
+      and organize your goals in one place.
+    </p>
+  </section>
+
+  <h2>What do you want to do?</h2>
+
+  <section class="tools">
+    <button class="tool" onclick="chooseTool('Study Assistant')">
+      <div class="emoji">📚</div>
+      <h3>Study Assistant</h3>
+      <p>Understand lessons and practice questions.</p>
+    </button>
+
+    <button class="tool" onclick="chooseTool('Coding Mentor')">
+      <div class="emoji">💻</div>
+      <h3>Coding Mentor</h3>
+      <p>Learn programming step by step.</p>
+    </button>
+
+    <button class="tool" onclick="chooseTool('Study Planner')">
+      <div class="emoji">📅</div>
+      <h3>Study Planner</h3>
+      <p>Plan your goals and daily tasks.</p>
+    </button>
+
+    <button class="tool" onclick="chooseTool('Amharic Learning')">
+      <div class="emoji">🌍</div>
+      <h3>Amharic Learning</h3>
+      <p>Explore learning in English and Amharic.</p>
+    </button>
+  </section>
+
+  <section class="chat">
+    <h3>💬 Chat with BAMA</h3>
+
+    <div id="messages" aria-live="polite">
+      <div class="message bot">
+        Hello! Welcome to BAMA AI. Choose a tool or
+        type a message to get started.
+      </div>
+    </div>
+
+    <form id="chatForm">
+      <input
+        id="userInput"
+        type="text"
+        placeholder="Ask something..."
+        autocomplete="off"
+        required
+      >
+      <button class="send" type="submit">Send</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  BAMA AI · Learn. Build. Grow.
+</footer>
+
+<script>
+const messages = document.getElementById("messages");
+const input = document.getElementById("userInput");
+
+function addMessage(text, sender) {
+  const div = document.createElement("div");
+  div.className = "message " + sender;
+  div.textContent = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function chooseTool(tool) {
+  input.value = "Help me with " + tool;
+  input.focus();
+}
+
+document.getElementById("chatForm")
+  .addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, "user");
+    input.value = "";
+
+    addMessage(
+      "Thanks for your question! The BAMA AI interface is working. " +
+      "Real AI answers will be connected in the next development step.",
+      "bot"
+    );
+  });
+</script>
+
+</body>
+</html>
